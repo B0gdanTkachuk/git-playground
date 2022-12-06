@@ -45,12 +45,17 @@ while not is_game_over():
         continue
 
     if guess in full_list:
-        guessed += 1
-        guesses.append(guess)
-        if guessed == WORDS_TO_WIN:
+        if guess in guesses:
+            print('You have already entered this word. Try again.')
+        else:
+         guessed += 1
+         guesses.append(guess)
+         if guessed == WORDS_TO_WIN:
             congratulate_user()
             exit()
-        print(f"That's right! {WORDS_TO_WIN - guessed} to go")
+         print(f"That's right! {WORDS_TO_WIN - guessed} to go")
     else:
         errors += 1
         print(f"Oops :( No such word, you have {ERRORS_TO_LOSE - errors} lives more")
+if is_game_over():
+    print("Sorry you have lost. Try better next time.")
